@@ -29,6 +29,7 @@ script = ExtResource( 2 )
 velocity = Vector2( 0, 50 )
 
 [node name="StarsClose" type="Node2D" parent="."]
+z_index = 10
 
 [node name="StarClose0" type="Sprite" parent="StarsClose"]
 position = Vector2( 0, -180 )
