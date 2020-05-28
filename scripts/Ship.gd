@@ -16,3 +16,4 @@ func _process(delta: float) -> void:
 	position.x = clamp(position.x, 0 + SHIP_WIDTH, view_size.x - SHIP_WIDTH)
 	set_position(position)
 
+ 
