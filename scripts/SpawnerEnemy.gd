@@ -8,10 +8,13 @@ func _ready() -> void:
 	spawn()
 	
 func spawn() -> void:
-	randomize()
-	var enemy = enemy_kamikaze_scene.instance()
-	var position = Vector2()
-	position.x = rand_range(0 + ENEMY_SIZE, Utils.view_size.x - ENEMY_SIZE)
-	position.y = 0 - ENEMY_SIZE
-	enemy.set_position(position)
-	get_node("Container").add_child(enemy)
+	while true:
+		randomize()
+		
+		var enemy = enemy_kamikaze_scene.instance()
+		var position = Vector2()
+		position.x = rand_range(0 + ENEMY_SIZE, Utils.view_size.x - ENEMY_SIZE)
+		position.y = 0 - ENEMY_SIZE
+		enemy.set_position(position)
+		get_node("Container").add_child(enemy)
+		yield(Utils.create_timer(rand_range(0.5, 1.25)), "timeout")

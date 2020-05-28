@@ -2,7 +2,7 @@ extends Node
 
 var main_node setget , _get_main_node
 var view_size setget , _get_view_size
-var mouse_pos setget , _get_mouse_pos
+var mouse_position setget , _get_mouse_position
 
 func _ready():
 	pass
@@ -50,8 +50,8 @@ func remote_call(src_node, method, arg0 = null, arg1 = null):
 		return src_node.call(method)
 	
 
-func _get_mouse_pos():
-	return get_viewport().get_mouse_pos()
+func _get_mouse_position():
+	return get_viewport().get_mouse_position()
 	
 
 func _get_main_node():
