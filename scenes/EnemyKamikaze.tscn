@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 16 )
 
-[node name="EnemyKamakaze" instance=ExtResource( 1 )]
+[node name="EnemyKamikaze" instance=ExtResource( 1 )]
 velocity = Vector2( 0, 350 )
 
 [node name="Sprite" parent="." index="0"]
