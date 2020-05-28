@@ -11,7 +11,7 @@ func spawn() -> void:
 	randomize()
 	var enemy = enemy_kamikaze_scene.instance()
 	var position = Vector2()
-	position.x = rand_range(0 + ENEMY_SIZE, get_viewport().get_visible_rect().size.x - ENEMY_SIZE)
+	position.x = rand_range(0 + ENEMY_SIZE, Utils.view_size.x - ENEMY_SIZE)
 	position.y = 0 - ENEMY_SIZE
 	enemy.set_position(position)
 	get_node("Container").add_child(enemy)
