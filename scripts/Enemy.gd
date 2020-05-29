@@ -18,4 +18,5 @@ func _process(delta: float) -> void:
 
 func set_armor(new_value):
 	armor = new_value
-	if armor <= 0: queue_free()
+	if armor <= 0: 
+		queue_free()
