@@ -17,6 +17,6 @@ func _process(delta) -> void:
 func shoot():
 	while true:
 		var laser = laser_scene.instance()
-		laser.set_position($Cannon.get_global_position)
+		laser.set_position($Cannon.get_global_position())
 		Utils.main_node.add_child(laser)
 		yield(Utils.create_timer(1.5), "timeout")
