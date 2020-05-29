@@ -3,8 +3,11 @@ extends Area2D
 const SHIP_WIDTH = 16
 const LASER_SCENE = preload("res://scenes/LaserShip.tscn")
 
+var armor = 4
+
 func _ready() -> void:
 	set_process(true)
+	add_to_group("ship")
 	
 	yield(Utils.create_timer(0.5), "timeout")
 	shoot()
@@ -27,7 +30,9 @@ func shoot():
 		
 		yield(Utils.create_timer(0.25), "timeout")
 	
-	
+func set_armor(new_value: int) -> void:
+	armor = new_value
+	if armor <= 0: queue_free()
 
 func create_laser(position: Vector2) -> void:
 	var laser = LASER_SCENE.instance()

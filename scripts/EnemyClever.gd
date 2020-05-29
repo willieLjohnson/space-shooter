@@ -1,6 +1,6 @@
 extends "res://scripts/Enemy.gd"
 
-const laser_scene = preload("res://scenes/LaserEnemy.tscn")
+const LASER_SCENE = preload("res://scenes/LaserEnemy.tscn")
 
 func _ready() -> void:
 	velocity.x = Utils.choose([velocity.x, -velocity.x])
@@ -16,7 +16,7 @@ func _process(delta) -> void:
 
 func shoot():
 	while true:
-		var laser = laser_scene.instance()
+		var laser = LASER_SCENE.instance()
 		laser.set_position($Cannon.get_global_position())
 		Utils.main_node.add_child(laser)
 		yield(Utils.create_timer(1.5), "timeout")
