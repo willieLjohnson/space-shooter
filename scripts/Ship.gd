@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	set_position(position)
 
 func shoot():
-	while true:
+	while true: 
 		var position_left = $Cannons/Left.get_global_position()
 		var position_right = $Cannons/Right.get_global_position()
 		create_laser(position_left)
