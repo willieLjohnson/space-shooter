@@ -8,6 +8,7 @@ export var velocity = Vector2()
 func _ready() -> void:
 	set_process(true)
 	add_to_group("enemy")
+	connect("area_entered", self, "_on_area_entered")
 	
 
 func _process(delta: float) -> void:
@@ -15,6 +16,12 @@ func _process(delta: float) -> void:
 	
 	if get_position().y - SIZE >= get_viewport_rect().size.y:
 		queue_free()
+	
+func _on_area_entered(other) -> void:
+	if other.is_in_group("ship"):
+		other.armor -= 1
+		queue_free()
+
 
 func set_armor(new_value):
 	armor = new_value
