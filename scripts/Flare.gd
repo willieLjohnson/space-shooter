@@ -2,6 +2,6 @@ extends Sprite
 
 
 func _ready() -> void:
-	get_node("Anim").play("fade_out")
-	yield(get_node("Anim"), "finished")
+	$Anim.play("fade_out")
+	yield($Anim, "animation_finished")
 	queue_free()

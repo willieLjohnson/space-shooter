@@ -7,7 +7,7 @@ func _ready() -> void:
 	set_process(true)
 	create_flare()
 	
-	yield(get_node("VisibilityNotifier2D"), "exit_screen")
+	yield($VisibilityNotifier2D, "screen_exited")
 	queue_free()
 
 

@@ -6,8 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 6 )
 
-[node name="ShipLaser" instance=ExtResource( 1 )]
-position = Vector2( 85.8319, 285.446 )
+[node name="LaserShip" instance=ExtResource( 1 )]
 velocity = Vector2( 0, -350 )
 
 [node name="Sprite" parent="." index="0"]
