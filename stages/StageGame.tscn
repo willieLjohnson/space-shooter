@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Stars.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://sprites/armor.png" type="Texture" id=5]
 [ext_resource path="res://sprites/score.png" type="Texture" id=6]
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://sprites/button_hover.png" type="Texture" id=8]
+[ext_resource path="res://sprites/button_normal.png" type="Texture" id=9]
+[ext_resource path="res://sprites/button_pressed.png" type="Texture" id=10]
 
 [sub_resource type="GDScript" id=2]
 resource_name = "SpriteArmor"
@@ -36,6 +39,22 @@ func set_score(new_value) -> void:
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 7 )
+
+[sub_resource type="GDScript" id=4]
+resource_name = "ButtonMenu"
+script/source = "extends TextureButton
+
+
+func _ready() -> void:
+	connect(\"pressed\", self, \"_on_pressed\")
+	Utils.attach(\"Ship\", \"tree_exited\", self, \"_on_ship_exited_tree\")
+	
+func _on_pressed() -> void:
+	get_tree().change_scene(\"res://stages/StageMain.tscn\")
+
+func _on_ship_exited_tree() -> void:
+	show()
+"
 
 [node name="World" type="Node"]
 
@@ -79,6 +98,31 @@ margin_bottom = 15.0
 custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonMenu" type="TextureButton" parent="HUD"]
+visible = false
+margin_left = 67.0
+margin_top = 134.0
+margin_right = 114.0
+margin_bottom = 150.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 8 )
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/ButtonMenu"]
+margin_left = 2.0
+margin_right = 47.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 1 )
+text = "MENU"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
