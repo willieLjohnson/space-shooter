@@ -2,6 +2,7 @@ extends Area2D
 
 const SHIP_WIDTH = 16
 const LASER_SCENE = preload("res://scenes/LaserShip.tscn")
+const EXPLOSION_SCENE = preload("res://scenes/Explosion.tscn")
 
 var armor = 4 setget set_armor
 
@@ -33,10 +34,15 @@ func shoot():
 func set_armor(new_value: int) -> void:
 	armor = new_value
 	if armor <= 0: 
+		create_explosion()
 		queue_free()
 
 func create_laser(position: Vector2) -> void:
 	var laser = LASER_SCENE.instance()
 	laser.set_position(position)
 	Utils.main_node.add_child(laser)
-	
+
+func create_explosion():
+	var explosion = EXPLOSION_SCENE.instance()
+	explosion.set_position(get_position())
+	Utils.main_node.add_child(explosion)
