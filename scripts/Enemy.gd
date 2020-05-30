@@ -26,6 +26,9 @@ func _on_area_entered(other) -> void:
 
 
 func set_armor(new_value):
+	if is_queued_for_deletion():
+		return
+		
 	armor = new_value
 	if armor <= 0: 
 		create_explosion()
