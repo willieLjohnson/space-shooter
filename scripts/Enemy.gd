@@ -30,7 +30,8 @@ func set_armor(new_value):
 		return
 		
 	armor = new_value
-	if armor <= 0: 
+	if armor <= 0:
+		Utils.find_node("TextureScore").score += 5
 		create_explosion()
 		queue_free()
 			

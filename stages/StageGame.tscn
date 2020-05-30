@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Stars.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/SpawnerEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://sprites/armor.png" type="Texture" id=5]
+[ext_resource path="res://sprites/score.png" type="Texture" id=6]
+[ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="GDScript" id=1]
 resource_name = "SpriteArmor"
@@ -17,6 +19,23 @@ func _ready() -> void:
 func _on_armor_changed(armor):
 	set_frame(armor)
 "
+
+[sub_resource type="GDScript" id=3]
+resource_name = "TextureScore"
+script/source = "extends TextureRect
+
+var score = 0 setget set_score
+
+func _ready() -> void:
+	pass
+
+func set_score(new_value) -> void:
+	score = new_value
+	$Label.set_text(str(score))
+"
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 7 )
 
 [node name="World" type="Node"]
 
@@ -40,3 +59,23 @@ centered = false
 hframes = 5
 frame = 4
 script = SubResource( 1 )
+
+[node name="TextureScore" type="TextureRect" parent="HUD"]
+margin_left = 123.0
+margin_top = 10.0
+margin_right = 170.0
+margin_bottom = 30.0
+texture = ExtResource( 6 )
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/TextureScore"]
+margin_left = 3.0
+margin_top = 1.0
+margin_right = 44.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
