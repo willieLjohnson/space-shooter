@@ -3,6 +3,7 @@ extends Area2D
 const SHIP_WIDTH = 16
 const LASER_SCENE = preload("res://scenes/LaserShip.tscn")
 const EXPLOSION_SCENE = preload("res://scenes/Explosion.tscn")
+const FLASH_SCENE = preload("res://scenes/Flash.tscn")
 
 var armor = 4 setget set_armor
 
@@ -32,6 +33,9 @@ func shoot():
 		yield(Utils.create_timer(0.25), "timeout")
 	
 func set_armor(new_value: int) -> void:
+	if new_value < armor:
+		Utils.main_node.add_child(FLASH_SCENE.instance())
+		
 	armor = new_value
 	if armor <= 0: 
 		create_explosion()
