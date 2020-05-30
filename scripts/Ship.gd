@@ -7,6 +7,8 @@ const FLASH_SCENE = preload("res://scenes/Flash.tscn")
 
 var armor = 4 setget set_armor
 
+signal armor_changed
+
 func _ready() -> void:
 	set_process(true)
 	add_to_group("ship")
@@ -37,6 +39,7 @@ func set_armor(new_value: int) -> void:
 		Utils.main_node.add_child(FLASH_SCENE.instance())
 		
 	armor = new_value
+	emit_signal("armor_changed", armor)
 	if armor <= 0: 
 		create_explosion()
 		queue_free()
