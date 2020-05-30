@@ -1,6 +1,7 @@
 extends Area2D
 
 const SIZE = 16
+const EXPLOSION_SCENE = preload("res://scenes/Explosion.tscn")
 
 export var armor = 2 setget set_armor
 export var velocity = Vector2()
@@ -20,10 +21,18 @@ func _process(delta: float) -> void:
 func _on_area_entered(other) -> void:
 	if other.is_in_group("ship"):
 		other.armor -= 1
+		create_explosion()
 		queue_free()
 
 
 func set_armor(new_value):
 	armor = new_value
 	if armor <= 0: 
+		create_explosion()
 		queue_free()
+			
+func create_explosion():
+	var explosion = EXPLOSION_SCENE.instance()
+	explosion.set_position(get_position())
+	Utils.main_node.add_child(explosion)
+
