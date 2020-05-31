@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 Utils="*res://scripts/Utils.gd"
 AudioPlayer="*res://scenes/AudioPlayer.tscn"
+Game="*res://scripts/Game.gd"
 
 [display]
 
