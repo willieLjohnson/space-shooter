@@ -36,6 +36,9 @@ func _ready() -> void:
 func set_score(new_value) -> void:
 	score = new_value
 	$Label.set_text(str(score))
+	
+	if score > Game.bestscore:
+		Game.bestscore = score
 "
 
 [sub_resource type="DynamicFont" id=3]

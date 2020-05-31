@@ -1,25 +1,28 @@
 extends Node
 
-var bestscore: int = 0 setget set_bestscore
-const FILE_PATH: String = "user://bestscore.data"
+var bestscore  = 0 setget set_bestscore
+const filepath = "user://score.dat"
 
-func _ready() -> void:
-	load_bestscore()
+func _ready():
+	load_score()
+	pass
 
-
-func load_bestscore() -> void:
+func load_score():
 	var file = File.new()
-	if not file.file_exists(FILE_PATH): return
-	file.open(FILE_PATH, File.READ)
+	if not file.file_exists(filepath): return
+	file.open(filepath, File.READ)
 	bestscore = file.get_var()
 	file.close()
-	
-func save_bestscore() -> void:
-	var file = File.new()
-	file.open(FILE_PATH, File.WRITE)
-	file.store_var(bestscore)
-	file.close
+	pass
 
-func set_bestscore(new_value: int) -> void:
-	bestscore = new_value
+func save_bestscore():
+	var file = File.new()
+	file.open(filepath, File.WRITE)
+	file.store_var(bestscore)
+	file.close()
+	pass
+
+func set_bestscore(value):
+	bestscore = value
 	save_bestscore()
+	pass
