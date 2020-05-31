@@ -9,9 +9,7 @@ func play2D(sample_name: String, parent: Node2D) -> void:
 	player.stream = $AudioLoader.get_resource(sample_name)
 	player.connect("finished", player, "queue_free")
 	player.play()
-	player.position = parent.get_position()
 	parent.add_child(player)
-	$AudioPlayer.play($AudioLoader.get_resource(sample_name))
 
 func play(sample_name: String) -> void:
 	var player = AudioStreamPlayer.new()
@@ -19,4 +17,3 @@ func play(sample_name: String) -> void:
 	player.connect("finished", player, "queue_free")
 	player.play()
 	add_child(player)
-	$AudioPlayer.play($AudioLoader.get_resource(sample_name))

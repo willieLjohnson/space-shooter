@@ -28,7 +28,8 @@ func _on_area_entered(other) -> void:
 func set_armor(new_value):
 	if is_queued_for_deletion():
 		return
-		
+	if new_value < armor:
+		AudioPlayer.play2D("hit_enemy", self)
 	armor = new_value
 	if armor <= 0:
 		Utils.find_node("TextureScore").score += 5

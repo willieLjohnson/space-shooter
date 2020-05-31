@@ -17,6 +17,7 @@ resources = [ PoolStringArray( "explosion", "hit_enemy", "hit_ship", "laser_enem
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -7.429
 autoplay = true
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]

@@ -45,6 +45,7 @@ func set_armor(new_value: int) -> void:
 	if new_value > 4: return
 		
 	if new_value < armor:
+		AudioPlayer.play2D("hit_ship", self)
 		Utils.main_node.add_child(FLASH_SCENE.instance())
 		
 	armor = new_value

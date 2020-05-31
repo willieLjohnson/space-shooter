@@ -9,6 +9,7 @@ func _ready() -> void:
 	$ParticleFlare.emitting = true
 	
 	Utils.remote_call("Camera", "shake", 8, 0.2)
+	AudioPlayer.play2D("explosion", self)
 	
 	$Anim.play("fade_out")
 	yield($Anim, "animation_finished")

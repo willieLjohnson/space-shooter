@@ -3,6 +3,7 @@ extends "res://scripts/Laser.gd"
 
 func _ready() -> void:
 	connect("area_entered", self, "_on_area_entered")
+	AudioPlayer.play2D("laser_enemy", self)
 	
 	
 func _on_area_entered(other) -> void:

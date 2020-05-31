@@ -8,6 +8,7 @@ const ENEMIES = [
 ]
 
 func _ready() -> void:
+	yield(Utils.create_timer(1.2), "timeout")
 	spawn()
 	
 func spawn() -> void:
