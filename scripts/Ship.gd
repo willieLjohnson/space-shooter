@@ -6,6 +6,7 @@ const EXPLOSION_SCENE = preload("res://scenes/Explosion.tscn")
 const FLASH_SCENE = preload("res://scenes/Flash.tscn")
 
 var armor = 4 setget set_armor
+var is_double_shooting = false setget set_double_shooting
 
 signal armor_changed
 
@@ -32,9 +33,17 @@ func shoot():
 		create_laser(position_left)
 		create_laser(position_right)
 		
+		if is_double_shooting:
+			var laser_left = create_laser(position_left)
+			var laser_right = create_laser(position_right)
+			laser_left.velocity.x = -25
+			laser_left.velocity.x = 25
+			
 		yield(Utils.create_timer(0.25), "timeout")
 	
 func set_armor(new_value: int) -> void:
+	if new_value > 4: return
+		
 	if new_value < armor:
 		Utils.main_node.add_child(FLASH_SCENE.instance())
 		
@@ -44,10 +53,18 @@ func set_armor(new_value: int) -> void:
 		create_explosion()
 		queue_free()
 
-func create_laser(position: Vector2) -> void:
+func set_double_shooting(new_value: bool) -> void:
+	is_double_shooting = new_value
+	
+	if is_double_shooting:
+		yield(Utils.create_timer(5), "timeout")
+		is_double_shooting = false
+	
+func create_laser(position: Vector2) -> Node2D:
 	var laser = LASER_SCENE.instance()
 	laser.set_position(position)
 	Utils.main_node.add_child(laser)
+	return laser
 
 func create_explosion():
 	var explosion = EXPLOSION_SCENE.instance()
