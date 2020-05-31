@@ -37,7 +37,7 @@ func shoot():
 			var laser_left = create_laser(position_left)
 			var laser_right = create_laser(position_right)
 			laser_left.velocity.x = -25
-			laser_left.velocity.x = 25
+			laser_right.velocity.x = 25
 			
 		yield(Utils.create_timer(0.25), "timeout")
 	
